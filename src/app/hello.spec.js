@@ -1,18 +1,16 @@
-var angular = require('angular');
-require('angular-mocks');
-var hello = require('./hello');
+const helloModule = require('./hello');
 
 describe('hello component', function () {
+
   beforeEach(function () {
-    angular
-      .module('fountainHello', ['app/hello.html'])
-      .component('fountainHello', hello);
-    angular.mock.module('fountainHello');
+    angular.mock.module(helloModule);
   });
+
   it('should render hello world', angular.mock.inject(function ($rootScope, $compile) {
-    var element = $compile('<fountain-hello>Loading...</fountain-hello>')($rootScope);
+    const element = $compile('<hello>Loading...</hello>')($rootScope);
+
     $rootScope.$digest();
-    var h1 = element.find('h1');
-    expect(h1.html()).toEqual('Hello World!');
+
+    expect(element.text()).toContain('Hello World!');
   }));
 });

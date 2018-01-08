@@ -1,15 +1,10 @@
-var angular = require('angular');
-
-var hello = require('./app/hello');
-require('angular-ui-router');
-var routesConfig = require('./routes');
+const angular = require('angular');
+const hello = require('./app/hello');
+const routesConfig = require('./routes');
 
 require('./index.less');
 
-var app = 'app';
-module.exports = app;
+const app = module.exports = 'app';
 
 angular
-  .module(app, ['ui.router'])
-  .config(routesConfig)
-  .component('app', hello);
+  .module(app, [routesConfig, hello]);

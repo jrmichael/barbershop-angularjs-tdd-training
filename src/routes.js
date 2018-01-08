@@ -1,4 +1,5 @@
-module.exports = routesConfig;
+const angular = require('angular');
+require('angular-ui-router');
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -8,6 +9,13 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('app', {
       url: '/',
-      component: 'app'
+      component: 'hello'
     });
 }
+
+const moduleName = 'app.routing';
+
+module.exports = moduleName;
+
+angular.module(moduleName, ['ui.router'])
+  .config(routesConfig);
