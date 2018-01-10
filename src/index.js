@@ -1,10 +1,9 @@
 const angular = require('angular');
-const hello = require('./app/hello');
-const routesConfig = require('./routes');
+const app = require('./app/app');
 
 require('./index.less');
 
-const app = module.exports = 'app';
+const barbershop = module.exports = 'barbershop';
 
 angular
-  .module(app, [routesConfig, hello]);
+  .module(barbershop, [app]);

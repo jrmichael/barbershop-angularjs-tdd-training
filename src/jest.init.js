@@ -1,7 +1,12 @@
-const angular = require('angular');
+const jQuery = require("jquery");
+Object.defineProperty(window, "jQuery", {value: jQuery});
+Object.defineProperty(window, "$", {value: jQuery});
 
-require('angular-mocks');
+const angular = require("angular");
+Object.defineProperty(window, "angular", {value: angular});
 
-Object.defineProperties(window, {
-  'angular': angular
-});
+require("angular-mocks");
+
+const jqueryMatchers = require('jest-jquery-matchers');
+
+jest.addMatchers(jqueryMatchers);
