@@ -2,19 +2,19 @@
   "appointments": [
     {
       "id": 1,
-      "client": "John",
+      "name": "John",
       "date": "2016-02-11",
       "time": "16:00"
     },
     {
       "id": 2,
-      "client": "Jane",
+      "name": "Jane",
       "date": "2016-02-11",
       "time": "17:00"
     },
     {
       "id": 3,
-      "client": "Joan",
+      "name": "Joan",
       "date": "2016-02-12",
       "time": "16:00"
     }

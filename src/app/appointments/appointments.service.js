@@ -1,15 +1,15 @@
 const moduleName = module.exports = 'barbershop.appointments.service';
 
 angular.module(moduleName, [])
-  .service('appointmentsService', function ($q, $rootScope, $log) {
+  .service('appointmentsService', function ($q, $rootScope, $http) {
     const appointments = [];
 
     return {
       list() {
-        return $q.resolve(angular.copy(appointments));
+        return $http.get('http://localhost:5000/appointments')
+          .then(response => response.data);
       },
       addAppointment(appointment) {
-        $log.info('adding', appointment);
         appointments.push(angular.copy(appointment));
         $rootScope.$broadcast('appointmentAdded');
         return $q.resolve();

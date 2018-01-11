@@ -1,47 +1,35 @@
 const appointmentsService = require('./appointments.service');
 
-describe('appointments in-memory service', function () {
+describe('appointments service', function () {
 
-  var service, q, rootScope;
+  var service, q, rootScope, http;
 
   beforeEach(angular.mock.module(appointmentsService));
 
-  beforeEach(angular.mock.inject(function (appointmentsService, $q, $rootScope) {
+  beforeEach(angular.mock.inject(function (appointmentsService, $q, $rootScope, $httpBackend) {
     service = appointmentsService;
     q = $q;
     rootScope = $rootScope;
+    http = $httpBackend;
   }));
 
-  it('exists', function () {
-    expect(service.list).toEqual(expect.any(Function));
-  });
-
-  it('is initially empty', function (done) {
-    expect.hasAssertions();
+  it('lists appointments', function (done) {
+    http.whenGET('http://localhost:5000/appointments')
+      .respond(200, [
+        {name: 'someAppointment'}
+      ]);
 
     service.list()
       .then(data => {
-        expect(data).toEqual([]);
+        expect(data).toEqual([{name: 'someAppointment'}]);
         done();
       });
 
-    rootScope.$apply();
+    http.flush();
   });
 
-  it('adds an appointment', function (done) {
-    service.addAppointment({name: 'newAppointment'})
-      .then(service.list)
-      .then(data => {
-        expect(data).toEqual([
-          {name: 'newAppointment'}
-        ]);
-        done();
-      });
 
-    rootScope.$apply();
-  });
-
-  it('informs about added appointment', function (done) {
+  it.skip('informs about added appointment', function (done) {
     expect.hasAssertions();
 
     const verify = jest.fn();
