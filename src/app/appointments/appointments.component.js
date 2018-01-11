@@ -17,7 +17,8 @@ class AppointmentsController {
 }
 
 angular.module(moduleName, [
-  require('./appointments.service')
+  require('./appointments.service'),
+  require('./addAppointment.component')
 ])
   .component('bsAppointments', {
     template: require('./appointments.html'),

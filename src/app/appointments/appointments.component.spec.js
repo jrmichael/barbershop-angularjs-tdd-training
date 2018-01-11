@@ -32,8 +32,14 @@ describe('appointments component', function () {
     element = compile('<bs-appointments></bs-appointments>')(scope);
     scope.$digest();
 
-    expect(element.text()).toContain("John")
+    expect(element.text()).toContain('John');
+  });
 
+  it('has add appointment form', function () {
+    element = compile('<bs-appointments></bs-appointments>')(scope);
+    scope.$digest();
+
+    expect(element.find('form[name=addAppointmentForm]')).toExist();
   });
 
 });
