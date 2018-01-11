@@ -1,13 +1,12 @@
 <div class="appointments">
-  <h1 class="appointments__title">Appointments</h1>
+  <h2 class="appointments__title">Appointments</h2>
 
   <div class="appointments__list">
-    <div class="appointment">
-      <div class="appointment__client">Jimmy</div>
+
+    <div class="appointment" ng-repeat="appointment in $ctrl.appointments">
+      <div class="appointment__client">{{ appointment.name }}</div>
     </div>
-    <div class="appointment">
-      <div class="appointment__client">Timmy</div>
-    </div>
+
   </div>
 </div>
 

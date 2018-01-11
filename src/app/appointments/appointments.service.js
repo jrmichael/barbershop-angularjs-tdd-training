@@ -4,7 +4,9 @@ angular.module(moduleName, [])
   .service('appointmentsService', function () {
     return {
       list() {
-
+        return [
+          {name: 'Norek'}
+        ];
       }
     };
   });
