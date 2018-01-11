@@ -7,7 +7,7 @@ describe('appointments component', function () {
 
   beforeEach(angular.mock.module(appointmentsComponent));
 
-  beforeEach(inject(function ($compile, $rootScope, appointmentsService, $q) {
+  beforeEach(angular.mock.inject(function ($compile, $rootScope, appointmentsService, $q) {
     scope = $rootScope.$new();
     compile = $compile;
     service = appointmentsService;
