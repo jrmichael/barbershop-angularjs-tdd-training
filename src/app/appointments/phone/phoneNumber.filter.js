@@ -1,4 +1,4 @@
-const moduleName = module.exports = 'barbarshop.phoneNumber';
+const moduleName = module.exports = 'barbershop.phoneNumber';
 
 function phoneNumberFilter(number) {
   return number;
