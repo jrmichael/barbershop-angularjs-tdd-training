@@ -1,7 +1,7 @@
 const moduleName = module.exports = 'barbershop.appointments.service';
 
 angular.module(moduleName, [])
-  .service('appointmentsService', function ($q) {
+  .service('appointmentsService', function ($q, $rootScope) {
     const appointments = [];
 
     return {
@@ -10,6 +10,7 @@ angular.module(moduleName, [])
       },
       addAppointment(appointment) {
         appointments.push(appointment);
+        $rootScope.$broadcast('appointmentAdded');
         return $q.resolve();
       }
     };

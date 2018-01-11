@@ -40,4 +40,19 @@ describe('appointments in-memory service', function () {
 
     rootScope.$apply();
   });
+
+  it('informs about added appointment', function (done) {
+    expect.hasAssertions();
+
+    const verify = jest.fn();
+    rootScope.$on('appointmentAdded', verify);
+
+    service.addAppointment({name: 'whatever'})
+      .then(() => {
+        expect(verify).toHaveBeenCalled();
+        done();
+      });
+
+    rootScope.$apply();
+  });
 });
