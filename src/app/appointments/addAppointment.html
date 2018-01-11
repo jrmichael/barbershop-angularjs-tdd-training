@@ -1,9 +1,15 @@
 <form name="addAppointmentForm" class="add-appointment-form">
   <div class="form-group">
     <input type="text"
+           name="name"
            ng-model="$ctrl.newAppointment.name"
            class="form-control"
            required>
+    <input type="text"
+           name="phoneNumber"
+           ng-model="$ctrl.newAppointment.phoneNumber"
+           class="form-control"
+    >
     <button
       class="form-control"
       type="submit"

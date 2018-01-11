@@ -4,7 +4,8 @@
   <div class="appointments__list">
 
     <div class="appointment" ng-repeat="appointment in $ctrl.appointments">
-      <div class="appointment__client">{{ appointment.name }}</div>
+      <div class="appointment__name">{{ appointment.name }}</div>
+      <div class="appointment__phoneNumber">{{ appointment.phoneNumber | phoneNumber }}</div>
     </div>
 
   </div>

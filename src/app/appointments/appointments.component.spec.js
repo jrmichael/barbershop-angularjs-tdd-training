@@ -24,13 +24,15 @@ describe('appointments component', function () {
 
   it('has a list of appointments', function () {
     service.list.mockReturnValue(q.resolve([
-      {name: 'John'}
+      {name: 'John', phoneNumber: '12345'}
     ]));
 
     element = compile('<bs-appointments></bs-appointments>')(scope);
     scope.$digest();
 
-    expect(element.text()).toContain('John');
+    expect(element.find('.appointment')).toHaveLength(1);
+    expect(element.find('.appointment__name')).toHaveText('John');
+    expect(element.find('.appointment__phoneNumber')).toHaveText('12345');
   });
 
   it('has add appointment form', function () {

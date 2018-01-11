@@ -3,7 +3,7 @@ const addAppointmentsComponent = require('./addAppointment.component');
 describe('add appointment form', function () {
 
   var compile, scope, service;
-  var element;
+  var component;
 
   beforeEach(angular.mock.module(addAppointmentsComponent));
 
@@ -16,32 +16,46 @@ describe('add appointment form', function () {
   }));
 
   it('adds an appointment', function () {
-    element = compile('<bs-add-appointment></bs-add-appointment>')(scope);
-    scope.$digest();
+    createComponent();
 
-    element.find('input').val('newAppointment').trigger('input');
-    element.find('button').click();
+    setName('newAppointment');
+    setPhoneNumber('123456789');
+    component.find('button').click();
 
-    expect(service.addAppointment).toHaveBeenCalledWith({name: 'newAppointment'});
+    expect(service.addAppointment).toHaveBeenCalledWith({
+      name: 'newAppointment',
+      phoneNumber: '123456789'
+    });
   });
 
   it('does not add appointments when no name', function () {
-    element = compile('<bs-add-appointment></bs-add-appointment>')(scope);
-    scope.$digest();
+    createComponent();
 
-    element.find('input').val('').trigger('input');
-    element.find('button').trigger('click');
+    setName('');
+    component.find('button').click();
 
     expect(service.addAppointment).not.toHaveBeenCalled();
   });
 
   it('clears input after adding', function () {
-    element = compile('<bs-add-appointment></bs-add-appointment>')(scope);
-    scope.$digest();
+    createComponent();
 
-    element.find('input').val('newAppointment').trigger('input');
-    element.find('button').click();
+    setName('whatever');
+    component.find('button').click();
 
-    expect(element.find('input').val()).toEqual('');
+    expect(component.find('input').val()).toEqual('');
   });
+
+  function createComponent() {
+    component = compile('<bs-add-appointment></bs-add-appointment>')(scope);
+    scope.$digest();
+  }
+
+  function setName(name) {
+    component.find('input[name=name]').val(name).trigger('input');
+  }
+
+  function setPhoneNumber(number) {
+    component.find('input[name=phoneNumber]').val(number).trigger('input');
+  }
 });
