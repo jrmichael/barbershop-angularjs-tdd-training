@@ -32,7 +32,7 @@ describe('appointments component', function () {
 
     expect(element.find('.appointment')).toHaveLength(1);
     expect(element.find('.appointment__name')).toHaveText('John');
-    expect(element.find('.appointment__phoneNumber')).toHaveText('12345');
+    expect(element.find('.appointment__phoneNumber')).toHaveText('12 345');
   });
 
   it('has add appointment form', function () {

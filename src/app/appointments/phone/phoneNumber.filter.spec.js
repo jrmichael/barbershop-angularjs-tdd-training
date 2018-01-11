@@ -8,8 +8,11 @@ describe('phoneNumberFilter', function () {
     filter = phoneNumberFilter;
   }));
 
-  it('does nothing to short numbers', function () {
-
-    expect(filter('123')).toEqual('123');
+  it('adds spaces', function () {
+    expect(filter(undefined)).toBe(undefined);
+    expect(filter('1')).toBe('1');
+    expect(filter('123')).toBe('123');
+    expect(filter('1234')).toBe('1 234');
+    expect(filter('123456')).toBe('123 456');
   });
 });
