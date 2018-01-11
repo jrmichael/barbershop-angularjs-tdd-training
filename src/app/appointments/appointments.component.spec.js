@@ -23,11 +23,9 @@ describe('appointments component', function () {
   });
 
   it('has a list of appointments', function () {
-    const promiseWithAppointments = q.resolve([
+    service.list.mockReturnValue(q.resolve([
       {name: 'John'}
-    ]);
-
-    service.list.mockReturnValue(promiseWithAppointments);
+    ]));
 
     element = compile('<bs-appointments></bs-appointments>')(scope);
     scope.$digest();
@@ -42,4 +40,17 @@ describe('appointments component', function () {
     expect(element.find('form[name=addAppointmentForm]')).toExist();
   });
 
+  it('refreshes the list after adding an appointment', function () {
+    element = compile('<bs-appointments></bs-appointments>')(scope);
+    scope.$digest();
+
+    service.list.mockReturnValue(q.resolve([
+      {name: 'newAppointment'}
+    ]));
+
+    scope.$broadcast('appointmentAdded');
+    scope.$apply();
+
+    expect(element.text()).toContain('newAppointment');
+  });
 });

@@ -1,1 +1,12 @@
-<form name="addAppointmentForm" class="add-appointment-form"></form>
+<form name="addAppointmentForm" class="add-appointment-form">
+  <div class="form-group">
+    <input type="text" ng-model="$ctrl.newAppointment.name" class="form-control" required>
+    <button
+      class="form-control"
+      type="submit"
+      ng-disabled="addAppointmentForm.$invalid"
+      ng-click="addAppointmentForm.$valid && $ctrl.createAppointment()"
+    >Dodaj</button>
+  </div>
+
+</form>

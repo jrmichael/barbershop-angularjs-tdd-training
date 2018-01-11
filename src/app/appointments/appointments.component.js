@@ -3,17 +3,23 @@ const angular = require('angular');
 
 class AppointmentsController {
 
-  constructor(appointmentsService) {
+  constructor(appointmentsService, $scope) {
     this.service = appointmentsService;
+    $scope.$on('appointmentAdded', () => {
+      this.fetchAppointments();
+    });
   }
 
   $onInit() {
+    this.fetchAppointments();
+  }
+
+  fetchAppointments() {
     this.service.list()
       .then(data => {
         this.appointments = data;
       });
   }
-
 }
 
 angular.module(moduleName, [
