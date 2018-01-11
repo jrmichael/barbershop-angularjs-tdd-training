@@ -1,4 +1,5 @@
 const moduleName = module.exports = 'barbershop.appointments.component';
+const angular = require('angular');
 
 class AppointmentsController {
 
