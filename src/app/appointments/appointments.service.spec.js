@@ -14,10 +14,9 @@ describe('appointments service', function () {
   }));
 
   it('lists appointments', function (done) {
+    expect.hasAssertions();
     http.whenGET('http://localhost:5000/appointments')
-      .respond(200, [
-        {name: 'someAppointment'}
-      ]);
+      .respond(200, [{name: 'someAppointment'}]);
 
     service.list()
       .then(data => {
@@ -28,9 +27,16 @@ describe('appointments service', function () {
     http.flush();
   });
 
+  it('adds an appointment', function () {
+    http.expectPOST('http://localhost:5000/appointments', {name: 'new appointment'}).respond(201);
 
-  it.skip('informs about added appointment', function (done) {
-    expect.hasAssertions();
+    service.addAppointment({name: 'new appointment'});
+
+    http.flush();
+  });
+
+  it('informs about added appointment', function (done) {
+    http.whenPOST('http://localhost:5000/appointments').respond(201);
 
     const verify = jest.fn();
     rootScope.$on('appointmentAdded', verify);
@@ -41,6 +47,6 @@ describe('appointments service', function () {
         done();
       });
 
-    rootScope.$apply();
+    http.flush();
   });
 });

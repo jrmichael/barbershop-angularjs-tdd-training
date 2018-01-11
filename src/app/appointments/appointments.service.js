@@ -2,17 +2,17 @@ const moduleName = module.exports = 'barbershop.appointments.service';
 
 angular.module(moduleName, [])
   .service('appointmentsService', function ($q, $rootScope, $http) {
-    const appointments = [];
-
+    const appointmetsUrl = 'http://localhost:5000/appointments';
     return {
       list() {
-        return $http.get('http://localhost:5000/appointments')
+        return $http.get(appointmetsUrl)
           .then(response => response.data);
       },
       addAppointment(appointment) {
-        appointments.push(angular.copy(appointment));
-        $rootScope.$broadcast('appointmentAdded');
-        return $q.resolve();
+        return $http.post('http://localhost:5000/appointments', appointment)
+          .then(() => {
+            $rootScope.$broadcast('appointmentAdded');
+          });
       }
     };
   });

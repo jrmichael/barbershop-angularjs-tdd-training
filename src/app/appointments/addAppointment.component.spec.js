@@ -11,7 +11,8 @@ describe('add appointment form', function () {
     scope = $rootScope.$new();
     compile = $compile;
     service = appointmentsService;
-    jest.spyOn(service, 'addAppointment');
+    jest.spyOn(service, 'addAppointment').mockImplementation(() => {
+    });
   }));
 
   it('adds an appointment', function () {
